@@ -13,7 +13,13 @@ var letterSchema = mongoose.Schema({
         username: String
     }, 
     requestedAt: String, 
-    approvalStatus: String, 
+    approvalStatus: {
+        teacher_id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User"
+        },
+        username: String
+    },
     approvedAt: String
 });
 

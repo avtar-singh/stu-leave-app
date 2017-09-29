@@ -17,7 +17,7 @@ var studentRoute  = require("./routes/student"),
     indexRoute    = require("./routes/index");
 
 // CONNECT TO MONGODB
-var data = "mongodb://localhost/stu_leave_app";
+var data          = "mongodb://localhost/stu_leave_app";
 mongoose.connect(data);
 
 // USING IMPORTANT THINGS
