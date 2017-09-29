@@ -5,7 +5,13 @@ var userSchema = new mongoose.Schema({
     username: String,
     password: String,
     email: String,
-    role: String
+    role: String,
+    letters: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Letter"
+        }
+    ]
 });
 
 userSchema.plugin(passportLocalMongoose);

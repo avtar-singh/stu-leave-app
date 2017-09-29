@@ -8,11 +8,12 @@ var express       = require("express"),
     LocalStrategy = require("passport-local"),
     methodOveride = require("method-override"),
     User          = require("./models/user"),
-    Letter         = require("./models/letter"),
+    Letter        = require("./models/letter"),
     seedDB        = require("./seeds");
 
 // REQUIRING ROUTES
-var studentRoute  = require("./routes/letter"),
+var studentRoute  = require("./routes/student"),
+    letterRoute   = require("./routes/letters"),
     indexRoute    = require("./routes/index");
 
 // CONNECT TO MONGODB
@@ -51,7 +52,8 @@ app.use(function(req, res, next){
 
 // USING ROUTES
 app.use("/", indexRoute);
-app.use("/letters", letterRoute);
+app.use("/student", studentRoute);
+app.use("/letter", letterRoute);
 
 // LISTEN REQUESTS
 app.listen(2000, localhost, function(){
