@@ -10,7 +10,7 @@ var letterSchema = mongoose.Schema({
           type: mongoose.Schema.Types.ObjectId,
           ref: "User"
         },
-        userName: String
+        username: String
     }, 
     requestedAt: String, 
     approvalStatus: String, 
