@@ -18,4 +18,4 @@ var letterSchema = mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Letter", commentSchema);
+module.exports = mongoose.model("Letter", letterSchema);
