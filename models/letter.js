@@ -5,7 +5,7 @@ var letterSchema = mongoose.Schema({
     endDate: String,
     leaveType: String, 
     reason: String, 
-    requestBy: {
+    author: {
         id: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "User"
