@@ -50,27 +50,33 @@ router.get("/:letter_id/edit", Middleware.checkLetterOrigin, function(req, res){
 
 // UPDATE ROUTE
 router.put("/:letter_id", Middleware.checkLetterOrigin, function(req, res){
-    //find and update the correct letter
-    Letter.findByIdAndUpdate(req.params.letter_id, req.body.letter, function(err, uLetter){
-        if(err){
-            res.redirect("back");
-        } else {
-            //redirect somewhere
-            res.redirect("/student/" + req.params.id);
-        }
-    });  
+    if(currentUser.role.toLowerCase().equals("teacher")){
+        //find and update the correct letter
+        Letter.findByIdAndUpdate(req.params.letter_id, req.body.letter, function(err, uLetter){
+            if(err){
+                req.flash("error", "You are not authenticated to do this!");
+                console.log(err);
+            } else {
+                req.flash("success", "Approved letter successfully!");
+                res.redirect("back");
+            }
+        }); 
+    } 
 });
 
 // DELETE ROUTE
 router.delete("/:letter_id", Middleware.checkLetterOrigin, function(req, res){
-    Letter.findByIdAndRemove(req.params.letter_id, function(err){
-        if(err){
-            res.redirect("back");
-        } else {
-            req.flash("success", "Letter deleted");
-            res.redirect("/student/" + req.params.id);
-        }
-    });  
+    if(currentUser.role.toLowerCase().equals("teacher")){
+        Letter.findByIdAndRemove(req.params.letter_id, function(err){
+            if(err){
+                req.flash("error", "You are not authenticated to do this!");
+                console.log(err);
+            } else {
+                req.flash("success", "Letter deleted");
+                res.redirect("back");
+            }
+        }); 
+    } 
 });
 
 module.exports = router;
