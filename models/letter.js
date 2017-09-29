@@ -5,17 +5,16 @@ var letterSchema = mongoose.Schema({
     endDate: String,
     leaveType: String, 
     reason: String, 
-    requestBy: String, 
+    requestBy: {
+        id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User"
+        },
+        userName: String
+    }, 
     requestedAt: String, 
     approvalStatus: String, 
     approvedAt: String, 
-    student: {
-    id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
-    },
-    userName: String
-  }
 });
 
 module.exports = mongoose.model("Letter", letterSchema);
