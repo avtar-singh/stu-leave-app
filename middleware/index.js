@@ -2,6 +2,32 @@ var Letter = require("../models/letter");
 
 var middlewareObject = {};
 
+middlewareObject.checkUserType = function (req, res, next) {
+    if (req.isAuthenticated()) {
+      User.findById(req.params.id, function (err, foundUser) {
+        if (err) {
+          req.flash("error", "User not found");
+          res.redirect("back");
+        } else {
+          // Is User a Student?
+          if (foundUser.role.toLowerCase().equals("student")) {
+            next();
+          }
+          // Is User a Teacher?
+          else if (foundUser.role.toLowerCase().equals("teacher")){
+              next();
+          }
+          // Not Found?
+          else {
+            req.flash("error", "You don't have permission to do that");
+            res.redirect("back");
+          }
+        }
+      });
+    } else {
+        res.redirect("back");
+    }
+  }
 middlewareObject.checkLetterOrigin = function(req, res, next){
     if(req.isAuthenticated()){
         Letter.findById(req.params.letter_id, function(err, foundLetter){
