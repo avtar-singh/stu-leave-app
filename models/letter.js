@@ -14,7 +14,7 @@ var letterSchema = mongoose.Schema({
     }, 
     requestedAt: String, 
     approvalStatus: String, 
-    approvedAt: String, 
+    approvedAt: String
 });
 
 module.exports = mongoose.model("Letter", letterSchema);
