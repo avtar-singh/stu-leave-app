@@ -5,7 +5,7 @@
     <p>
     <h2>Welcome, <span class="label label-default"><%= student.username %></span></h2>
 
-        <a href="/letter/new">Add New Letter</a>
+        <a class="btn btn-sm btn-primary btn-block" href="/letter/new">Add New Letter</a>
 
         <% student.letters.forEach(function callback(letter, index, array){ %>
         <h2 id="fHeading">Letter <% index %></h2>
