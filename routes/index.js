@@ -63,9 +63,16 @@ router.post("/login",
         passport.authenticate("local",
         {
             successRedirect: "/", 
-            failureRedirect: "/login"
+            failureRedirect: "/login",
+            failureFlash: true 
         }),
         function(req, res){
+            User.findById(req.params.id, function(err, data){
+                if(err){
+                    console.log(err);
+                }else{
+                    res.redirect("/", {user: data});
+                }
 });
 
 // LOGOUT FORM
