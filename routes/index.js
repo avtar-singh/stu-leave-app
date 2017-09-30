@@ -73,6 +73,7 @@ router.post("/login",
                 }else{
                     res.redirect("/", {user: data});
                 }
+            });
 });
 
 // LOGOUT FORM
