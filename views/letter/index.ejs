@@ -1,22 +1,49 @@
-<h1>Teacher's Home Page</h1>
+<% include ../partials/header %>
+    <h1>Teacher's Home Page</h1>
 
-<p>
-    <% letter.forEach(function(letter){ %>
-    <ul>
-        <li>Student's Name: <%= letter.author.username %></li>
-        <li>Star Date: <%= letter.startDate %></li>
-        <li>End Date: <%= letter.endDate %></li>
-        <li>Leave Type: <%= letter.leaveType %></li>
-        <li>Reason: <%= letter.reason %></li>
-        <li>Requested At: <%= letter.requestedAt %></li>
-        <% if(!letter.approvalStatus.status){ %>
-            <li>Approval Status: False</li>
-        <% } else { %>
-            <li>Approval Status: True</li>
-        <% } %>
-        <li>Approved At: <%= letter.approvedAt %></li>
-    </ul>
-    <a href="letter/<%= letter._id %>/edit">Approve This Letter</a>
-    <hr>
-    <% }); %>
-</p>
+    <p>
+        <% letter.forEach(function callback(letter, index){ %>
+            <h2 id="fHeading">Letter <%= index+1 %></h2>
+        <table class="table table-hover">
+            <tr class="info">
+                <td>Student's Name</td>
+                <td><%= letter.author.username %></td>
+            </tr>
+            <tr>
+                <td>Start Date</td>
+                <td><%= letter.startDate %></td>
+            </tr>
+            <tr>
+                    <td>End Date</td>
+                    <td><%= letter.endDate %></td>
+            </tr>            
+            <tr>
+                    <td>Leave Type</td>
+                    <td><%= letter.leaveType %></td>
+                </tr>            
+            <tr>
+                    <td>Reason</td>
+                    <td><%= letter.reason %></td>
+            </tr>            
+            <tr>
+                    <td>Requested At</td>
+                    <td><%= letter.requestedAt %></td>
+            </tr>            
+            <tr>        
+                <% if(!letter.approvalStatus.status){ %>
+                    <td>Approval Status</td>
+                    <td>False
+                <% } else { %>
+                    <td>Approval Status</td>
+                    <td>True</td>
+                <% } %>
+            <tr>
+                    <td>Approved At</td>
+                    <td><%= letter.approvedAt %></td>
+            </tr>
+        </table>
+        <a  class="btn btn-lg btn-primary btn-block" href="letter/<%= letter._id %>/edit">Approve This Letter</a>
+        <hr>
+        <% }); %>
+    </p>
+<% include ../partials/footer %>

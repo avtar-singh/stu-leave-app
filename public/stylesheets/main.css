@@ -1,0 +1,64 @@
+h1{
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+#fHeading{
+    color: white;
+    width: 120px;
+    border-radius: 5px;
+    background: steelblue;
+    margin: 15px auto;
+    text-align: center;
+    padding: 5px;
+}
+#myForm{
+    width: 40%; 
+    margin: 25px auto;
+}
+
+#myLanding{
+    width: 100%; 
+    margin: 25px auto;
+}
+
+.form-group{
+    padding: 10px;
+}
+  
+.form-control{
+    margin-bottom: 10px;
+}
+
+.navbar-default{
+  z-index: 1;
+  background: steelblue;
+  border: 0px;
+}
+
+.navbar-default .navbar-nav>li>a, .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{
+  color: white;
+  font-size: 17px;
+  margin: auto 0px;
+  padding: 10px auto;
+}
+
+.navbar-default .navbar-nav>li>a:hover{
+  border-bottom: 1px solid rgb(119,136,153);
+  padding-bottom: 9px;
+  cursor: pointer;
+}
+
+.navbar-default .navbar-brand:hover{
+  color: #000;
+  padding-bottom: 9px;
+  cursor: pointer;
+}  
+
+li{
+    list-style: none;
+}
+
+body{
+    font-family: 'Lato', sans-serif;
+}

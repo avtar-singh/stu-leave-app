@@ -1,12 +1,11 @@
-<h1>This is my landing page</h1>
-
-<a href="/register">Register here</a>
-<a href="/login">Login here</a>
-<a href="/logout">Logout</a>
-
-<% if(currentUser && currentUser.role === "student"){ %>
-    <a href="/student/<%= currentUser.id %>">View details</a>
-<% } %>
-<% if(currentUser && currentUser.role === "teacher"){ %>
-    <a href="/letter">View All Letters</a>
-<% } %>
+<% include partials/header %>
+<div id="myLanding">
+    <link rel="stylesheet" href="/stylesheets/landing.css">
+    <div id="content">
+        <hr>
+        <h1>Welcome to S.L.A.S.A</h1>
+        <p>Student Leave Application Submission & Aprroval</p>
+        <hr>
+    </div>
+</div>
+<% include partials/footer %>

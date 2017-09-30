@@ -1,17 +1,37 @@
-<h1>Create New Letter</h1>
+<% include ../partials/header %>
 
-<form action="/letter" method="POST">
-    <label for="start date">Start Date: </label>
-    <input type="date" name="letter[startDate]">
-    <label for="end date">End Date: </label>
-    <input type="date" name="letter[endDate]">
-    <label for="type of leave">Type of Leave: </label>
-    <input type="text" name="letter[leaveType]" placeholder="type of leave">
-    <label for="reason of leave">Reason of Leave: </label>
-    <input type="text" name="letter[reason]" placeholder="reason of leave">
-    <label for="date of request">Date of Request: </label>
-    <input type="date" name="letter[requestedAt]">
-    <input type="submit" value="Create">   
-</form>
+    <h1>Create New Letter</h1>
+    <form action="/letter" method="POST">
+        <div class="form-group">
+                <label for="start date">Start Date: </label>
+                <input class="form-control" type="date" name="letter[startDate]">
+        </div>
 
-<a href="/student/<%= res.locals.currentUser.id %>">Back to Home Page</a>
+        <div class="form-group">
+                <label for="end date">End Date: </label>
+                <input class="form-control" type="date" name="letter[endDate]">                    
+        </div>
+
+        <div class="form-group">
+                <label for="type of leave">Type of Leave: </label>
+                <input class="form-control" type="text" name="letter[leaveType]" placeholder="type of leave">                    
+        </div>
+
+        <div class="form-group">
+                <label for="reason of leave">Reason of Leave: </label>
+                <input class="form-control" type="text" name="letter[reason]" placeholder="reason of leave">                    
+        </div>
+
+        <div class="form-group">
+                <label for="date of request">Date of Request: </label>
+                <input class="form-control" type="date" name="letter[requestedAt]">
+        </div>
+
+        <div class="form-group">
+            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Create">  
+        </div>
+            
+    </form>
+    <a href="/student/<%= currentUser.id %>">Back to Home Page</a>
+
+<% include ../partials/footer %>

@@ -1,25 +1,29 @@
-<h1>Student's Home Page</h1>
+<% include ../partials/header %>
 
-<h2>Welcome, <%= student.username %></h2>
+    <h1>Student's Home Page</h1>
 
-<a href="/letter/new">Add New Letter</a>
+    <h2>Welcome, <%= student.username %></h2>
 
-<p>
-    <% student.letters.forEach(function callback(letter, index, array){ %>
-    <h2>Letter <% index %></h2>
-    <ul>
-        <li>Star Date: <%= letter.startDate %></li>
-        <li>End Date: <%= letter.endDate %></li>
-        <li>Leave Type: <%= letter.leaveType %></li>
-        <li>Reason: <%= letter.reason %></li>
-        <li>Requested At: <%= letter.requestedAt %></li>
-        <% if(!letter.approvalStatus.status){ %>
-            <li>Approval Status: False</li>
-        <% } else { %>
-            <li>Approval Status: True</li>
-        <% } %>
-        <li>Approved At: <%= letter.approvedAt %></li>
-    </ul>
-    <hr>
-    <% }); %>
-</p>
+    <a href="/letter/new">Add New Letter</a>
+
+    <p>
+        <% student.letters.forEach(function callback(letter, index, array){ %>
+        <h2>Letter <% index %></h2>
+        <ul>
+            <li>Star Date: <%= letter.startDate %></li>
+            <li>End Date: <%= letter.endDate %></li>
+            <li>Leave Type: <%= letter.leaveType %></li>
+            <li>Reason: <%= letter.reason %></li>
+            <li>Requested At: <%= letter.requestedAt %></li>
+            <% if(!letter.approvalStatus.status){ %>
+                <li>Approval Status: False</li>
+            <% } else { %>
+                <li>Approval Status: True</li>
+            <% } %>
+            <li>Approved At: <%= letter.approvedAt %></li>
+        </ul>
+        <hr>
+        <% }); %>
+    </p>
+
+<% include ../partials/footer %>
