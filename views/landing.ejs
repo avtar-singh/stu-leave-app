@@ -1,11 +1,11 @@
 <h1>This is my landing page</h1>
 
-<% if(!currentUser) { %>
+<% if(!currentUser){ %>
     <a href="/register">Register here</a><br>
     <a href="/login">Login here</a><br>
     <a href="/logout">Logout</a>
-<% } else if (currentUser && user.role.toLowerCase().equals("student")) { %>
+<% } else if(currentUser && user.role.toLowerCase().equals("student")){ %>
     <a href="/student/<%= user._id %>">View details</a>
-<% } else if (currentUser && user.role.toLowerCase().equals("teacher")) { %>
+<% } else if(currentUser && user.role.toLowerCase().equals("teacher")){ %>
     <a href="/letter">View All Letters</a>
 <% } %>
