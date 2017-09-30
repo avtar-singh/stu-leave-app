@@ -5,6 +5,7 @@ var express = require("express"),
 
 // SHOW ROUTE
 router.get("/:id", function (req, res) {
+    // CHECK IF USER IS STUDENT OR NOT
     if(res.locals.currentUser.role === "student"){
         User.findById(req.params.id).populate("letters").exec(function (err, data) {
             if (err) {

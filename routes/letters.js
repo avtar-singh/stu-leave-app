@@ -65,6 +65,7 @@ router.post("/", Middleware.isLoggedIn, function(req, res){
 
 // EDIT ROUTE - FOR APPROVAL OF LETTERS
 router.get("/:letter_id/edit", function(req, res){
+    // CHECK IF USER IS TEACHER OR NOT
     if(res.locals.currentUser.role === "teacher"){
         Letter.findById(req.params.letter_id, function(err, foundLetter){
             res.render("letter/approve", {letter: foundLetter, letid: req.params.letter_id});
@@ -74,6 +75,7 @@ router.get("/:letter_id/edit", function(req, res){
 
 // UPDATE ROUTE
 router.put("/:letter_id", function(req, res){
+    // CHECK IF USER IS TEACHER OR NOT
     if(res.locals.currentUser.role === "teacher"){
         //find and update the correct letter
         Letter.findByIdAndUpdate(req.params.letter_id, req.body.letter, function(err, uLetter){
