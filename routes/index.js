@@ -60,7 +60,7 @@ router.get("/login", function(req, res){
 
 // SIGN IN LOGIC
 router.post("/login", 
-        [Middleware.checkIfStudent, Middleware.checkIfTeacher], 
+        Middleware.checkIfStudent, Middleware.checkIfTeacher, 
         passport.authenticate("local",
         {
             successRedirect: "/", 
