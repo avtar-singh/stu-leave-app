@@ -8,9 +8,9 @@
     <% student.letters.forEach(function callback(letter, index, array){ %>
     <h2>Letter <% index %></h2>
     <ul>
-        <li>Star Date: <%= letter.startdate %></li>
-        <li>End Date: <%= letter.enddate %></li>
-        <li>Leave Type: <%= letter.leavetype %></li>
+        <li>Star Date: <%= letter.startDate %></li>
+        <li>End Date: <%= letter.endDate %></li>
+        <li>Leave Type: <%= letter.leaveType %></li>
         <li>Reason: <%= letter.reason %></li>
         <li>Requested At: <%= letter.requestedAt %></li>
         <% if(letter.approvalStatus == null){ %>
