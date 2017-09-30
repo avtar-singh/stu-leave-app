@@ -4,6 +4,19 @@ var express     = require("express"),
     Letter      = require("../models/letter"),
     Middleware  = require("../middleware");
 
+// INDEX ROUTE
+router.get("/", Middleware.isLoggedIn, function(req, res){
+    if(currentUser.role.toLowerCase().equals("teacher")){    
+        Letter.find({}, function(err, data){
+            if(err){
+                console.log(err);
+            }else{
+                res.render("letter/index", {user: data});
+            }
+        });
+    }
+  });
+
 // NEW ROUTE
 router.get("/new", Middleware.isLoggedIn, function(req, res){
     Letter.findById(req.params.id, function(err, data){
@@ -17,24 +30,26 @@ router.get("/new", Middleware.isLoggedIn, function(req, res){
 
 // POST ROUTE
 router.post("/", Middleware.isLoggedIn, function(req, res){
-    //CREATE NEW LETTER
-    Letter.create(req.body.letter, function(err, letter){
-        if(err){
-            req.flash("error", "Something went wrong!");
-            console.log(err);
-        }else{
-            // add username and id to letter
-            letter.author.id = req.user._id;
-            letter.author.username = req.user.username;
-            // save letter         
-            letter.save();
-            user.letters.push(letter);
-            user.save();
-            console.log(letter);
-            req.flash("success", "Successfully added letter");
-            res.redirect('/student/' + user._id); 
-        }               
-    });
+    if(currentUser.role.toLowerCase().equals("student")){    
+        //CREATE NEW LETTER
+        Letter.create(req.body.letter, function(err, letter){
+            if(err){
+                req.flash("error", "Something went wrong!");
+                console.log(err);
+            }else{
+                // add username and id to letter
+                letter.author.id = req.user._id;
+                letter.author.username = req.user.username;
+                // save letter         
+                letter.save();
+                user.letters.push(letter);
+                user.save();
+                console.log(letter);
+                req.flash("success", "Successfully added letter");
+                res.redirect('/student/' + user._id); 
+            }               
+        });
+    }
 });
 
 // EDIT ROUTE
