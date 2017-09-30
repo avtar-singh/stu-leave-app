@@ -1,0 +1,11 @@
+<h1>Approve Student Letters</h1>
+
+<form action="/letter/<%= letter._id %>?_method=PUT" method="POST">
+    <input type="text" name="letter[approvalStatus][teacher_id]" placeholder="status" value="<%= currentUser._id %>">
+    <input type="text" name="letter[approvalStatus][username]" placeholder="status" value="<%= currentUser.username %>">
+    <input type="text" name="letter[approvalStatus][status]" placeholder="status" value="true">
+    <input type="date" name="letter[approvedAt]" placeholder="date of approval">
+    <input type="submit" value="Approve">   
+</form>
+
+<a href="/letter">Back to Home Page</a>
