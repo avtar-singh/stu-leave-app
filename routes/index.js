@@ -29,8 +29,8 @@ router.post("/register", function(req, res){
         passport.authenticate("local")(req, res, function(){
             // SUCCESS MESSAGE
             req.flash("success", "Welcome to S.L.A.S.A " + newUser.username);
-            // REDIRECT TO VIEW ALL LETTERS PAGE
-            res.redirect("/letters");
+            // REDIRECT TO VIEW ALL LETTER PAGE
+            res.redirect("/letter");
         });
     });
 });
