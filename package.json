@@ -4,7 +4,8 @@
   "description": "It is a NodeJS application for student leave application submission and approval in a student-teacher scenario.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "Avtar Singh Chohan",
   "license": "ISC",
