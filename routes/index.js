@@ -1,8 +1,9 @@
 // REQUIRING DEPENDENCIES
-var express   = require("express"),
-    router    = express.Router(),
-    passport  = require("passport"),
-    User      = require("../models/user");
+var express    = require("express"),
+    router     = express.Router(),
+    passport   = require("passport"),
+    User       = require("../models/user"),
+    Middleware = require("../middleware");
 
 // ROOT ROUTE
 router.get("/", function(req, res){
@@ -58,12 +59,14 @@ router.get("/login", function(req, res){
 });
 
 // SIGN IN LOGIC
-router.post("/login", passport.authenticate("local",
-    {
-        successRedirect: "/", 
-        failureRedirect: "/login"
-    }),
-    function(req, res){
+router.post("/login", 
+        [Middleware.checkIfStudent, Middleware.checkIfTeacher], 
+        passport.authenticate("local",
+        {
+            successRedirect: "/", 
+            failureRedirect: "/login"
+        }),
+        function(req, res){
 });
 
 // LOGOUT FORM

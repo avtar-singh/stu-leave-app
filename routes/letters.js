@@ -5,8 +5,7 @@ var express     = require("express"),
     Middleware  = require("../middleware");
 
 // INDEX ROUTE
-router.get("/", Middleware.isLoggedIn, function(req, res){
-    if(currentUser.role.toLowerCase().equals("teacher")){    
+router.get("/", Middleware.isLoggedIn, Middleware.checkIfTeacher, function(req, res){  
         Letter.find({}, function(err, data){
             if(err){
                 console.log(err);
@@ -14,11 +13,10 @@ router.get("/", Middleware.isLoggedIn, function(req, res){
                 res.render("letter/index", {user: data});
             }
         });
-    }
   });
 
 // NEW ROUTE
-router.get("/new", Middleware.isLoggedIn, function(req, res){
+router.get("/new", Middleware.isLoggedIn, Middleware.checkIfStudent, function(req, res){
     Letter.findById(req.params.id, function(err, data){
         if(err){
             console.log(err);
@@ -29,69 +27,39 @@ router.get("/new", Middleware.isLoggedIn, function(req, res){
 });
 
 // POST ROUTE
-router.post("/", Middleware.isLoggedIn, function(req, res){
-    if(currentUser.role.toLowerCase().equals("student")){    
-        //CREATE NEW LETTER
-        Letter.create(req.body.letter, function(err, letter){
-            if(err){
-                req.flash("error", "Something went wrong!");
-                console.log(err);
-            }else{
-                // add username and id to letter
-                letter.author.id = req.user._id;
-                letter.author.username = req.user.username;
-                // save letter         
-                letter.save();
-                user.letters.push(letter);
-                user.save();
-                console.log(letter);
-                req.flash("success", "Successfully added letter");
-                res.redirect('/student/' + user._id); 
-            }               
-        });
-    }
-});
-
-// EDIT ROUTE
-router.get("/:letter_id/edit", Middleware.checkLetterOrigin, function(req, res){
-    Letter.findById(req.params.letter_id, function(err, foundLetter){
+router.post("/", Middleware.isLoggedIn, Middleware.checkIfStudent, function(req, res){
+    //CREATE NEW LETTER
+    Letter.create(req.body.letter, function(err, letter){
         if(err){
-            res.redirect("back");
-        } else {
-            res.render("letter/edit", {user_id: req.params.id, letter: foundLetter});
-        }
-    });  
+            req.flash("error", "Something went wrong!");
+            console.log(err);
+        }else{
+            // add username and id to letter
+            letter.author.id = req.user._id;
+            letter.author.username = req.user.username;
+            // save letter         
+            letter.save();
+            user.letters.push(letter);
+            user.save();
+            console.log(letter);
+            req.flash("success", "Successfully added letter");
+            res.redirect('/student/' + user._id); 
+        }               
+    });
 });
 
 // UPDATE ROUTE
-router.put("/:letter_id", Middleware.checkLetterOrigin, function(req, res){
-    if(currentUser.role.toLowerCase().equals("teacher")){
-        //find and update the correct letter
-        Letter.findByIdAndUpdate(req.params.letter_id, req.body.letter, function(err, uLetter){
-            if(err){
-                req.flash("error", "You are not authenticated to do this!");
-                console.log(err);
-            } else {
-                req.flash("success", "Approved letter successfully!");
-                res.redirect("back");
-            }
-        }); 
-    } 
-});
-
-// DELETE ROUTE
-router.delete("/:letter_id", Middleware.checkLetterOrigin, function(req, res){
-    if(currentUser.role.toLowerCase().equals("teacher")){
-        Letter.findByIdAndRemove(req.params.letter_id, function(err){
-            if(err){
-                req.flash("error", "You are not authenticated to do this!");
-                console.log(err);
-            } else {
-                req.flash("success", "Letter deleted");
-                res.redirect("back");
-            }
-        }); 
-    } 
+router.put("/:letter_id", Middleware.checkIfTeacher, Middleware.checkLetterOrigin, function(req, res){
+    //find and update the correct letter
+    Letter.findByIdAndUpdate(req.params.letter_id, req.body.letter, function(err, uLetter){
+        if(err){
+            req.flash("error", "You are not authenticated to do this!");
+            console.log(err);
+        } else {
+            req.flash("success", "Approved letter successfully!");
+            res.redirect("back");
+        }
+    }); 
 });
 
 module.exports = router;
