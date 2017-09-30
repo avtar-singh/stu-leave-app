@@ -16,9 +16,14 @@ router.get("/register", function(req, res){
 
 // SIGN UP LOGIC
 router.post("/register", function(req, res){
+
     // DECLARING USERNAME VARIABLE
-    var uName = new User({username: req.body.username});
-    User.register(uName, req.body.password, function(err, newUser){
+    var userData = new User({
+            username: req.body.username,
+            email: req.body.email, 
+            role: req.body.role
+    });
+    User.register(userData, req.body.password, function(err, newUser){
         if(err){
             // ERROR MESSAGE
             req.flash("error", err.message);
@@ -27,10 +32,22 @@ router.post("/register", function(req, res){
         } 
         // AUTHENTICATE USER
         passport.authenticate("local")(req, res, function(){
-            // SUCCESS MESSAGE
-            req.flash("success", "Welcome to S.L.A.S.A " + newUser.username);
-            // REDIRECT TO VIEW ALL LETTER PAGE
-            res.redirect("/letter");
+            if(currentUser.role.toLowerCase().equals("student")){
+                // SUCCESS MESSAGE
+                req.flash("success", "Welcome to S.L.A.S.A " + newUser.username);
+                // REDIRECT TO VIEW ALL STUDENT APPLICATIONS PAGE
+                res.redirect("/student/" + newUser._id);
+            } else if(currentUser.role.toLowerCase().equals("teacher")){
+                // SUCCESS MESSAGE
+                req.flash("success", "Welcome to S.L.A.S.A " + newUser.username);
+                // REDIRECT TO VIEW ALL LETTER PAGE
+                res.redirect("/letter");
+            } else {
+                // ERROR MESSAGE
+                req.flash("error", "Please provide required role i.e student or teacher ");
+                // REDIRECT TO LOGOUT PAGE
+                res.redirect("/logout");
+            }
         });
     });
 });
@@ -43,7 +60,7 @@ router.get("/login", function(req, res){
 // SIGN IN LOGIC
 router.post("/login", passport.authenticate("local",
     {
-        successRedirect: "/letter", 
+        successRedirect: "/", 
         failureRedirect: "/login"
     }),
     function(req, res){
