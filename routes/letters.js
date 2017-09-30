@@ -10,7 +10,7 @@ router.get("/", Middleware.isLoggedIn, Middleware.checkIfTeacher, function(req, 
             if(err){
                 console.log(err);
             }else{
-                res.render("letter/index", {user: data});
+                res.render("letter/index", {letter: data});
             }
         });
   });

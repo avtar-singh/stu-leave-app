@@ -1,0 +1,22 @@
+<h1>Teacher's Home Page</h1>
+
+<p>
+    <% letter.forEach(function(letter)){ %>
+    <ul>
+        <li>Student's Name: <%= letter.author.username %></li>
+        <li>Star Date: <%= letter.startDate %></li>
+        <li>End Date: <%= letter.endDate %></li>
+        <li>Leave Type: <%= letter.leaveType %></li>
+        <li>Reason: <%= letter.reason %></li>
+        <li>Requested At: <%= letter.requestedAt %></li>
+        <% if(letter.approvalStatus == null){ %>
+            <li>Approval Status: False</li>
+        <% } else { %>
+            <li>Approval Status: True</li>
+        <% } %>
+        <li>Approved At: <%= letter.approvedAt %></li>
+    </ul>
+    <a href="letter/<%= letter._id" + >Approve This Letter</a>
+    <hr>
+    <% }); %>
+</p>
