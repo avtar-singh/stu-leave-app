@@ -1,6 +1,6 @@
 // REQUIRING DEPENDENCIES
 var express    = require("express"),
-    router     = express.Router(),
+    router     = express.Router({mergeParams: true}),
     passport   = require("passport"),
     User       = require("../models/user"),
     Middleware = require("../middleware");
@@ -33,12 +33,12 @@ router.post("/register", function(req, res){
         } 
         // AUTHENTICATE USER
         passport.authenticate("local")(req, res, function(){
-            if(newtUser.role.toLowerCase().equals("student")){
+            if(newUser.role === "student"){
                 // SUCCESS MESSAGE
                 req.flash("success", "Welcome to S.L.A.S.A " + newUser.username);
                 // REDIRECT TO VIEW ALL STUDENT APPLICATIONS PAGE
                 res.redirect("/student/" + newUser._id);
-            } else if(newUser.role.toLowerCase().equals("teacher")){
+            } else if(newUser.role === "teacher"){
                 // SUCCESS MESSAGE
                 req.flash("success", "Welcome to S.L.A.S.A " + newUser.username);
                 // REDIRECT TO VIEW ALL LETTER PAGE
@@ -67,13 +67,6 @@ router.post("/login",
             failureFlash: true 
         }),
         function(req, res){
-            User.findById(req.params.id, function(err, data){
-                if(err){
-                    console.log(err);
-                }else{
-                    res.redirect("/", {user: data});
-                }
-            });
 });
 
 // LOGOUT FORM
