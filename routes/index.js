@@ -33,12 +33,12 @@ router.post("/register", function(req, res){
         } 
         // AUTHENTICATE USER
         passport.authenticate("local")(req, res, function(){
-            if(currentUser.role.toLowerCase().equals("student")){
+            if(newtUser.role.toLowerCase().equals("student")){
                 // SUCCESS MESSAGE
                 req.flash("success", "Welcome to S.L.A.S.A " + newUser.username);
                 // REDIRECT TO VIEW ALL STUDENT APPLICATIONS PAGE
                 res.redirect("/student/" + newUser._id);
-            } else if(currentUser.role.toLowerCase().equals("teacher")){
+            } else if(newUser.role.toLowerCase().equals("teacher")){
                 // SUCCESS MESSAGE
                 req.flash("success", "Welcome to S.L.A.S.A " + newUser.username);
                 // REDIRECT TO VIEW ALL LETTER PAGE
