@@ -37,6 +37,7 @@ router.post("/", Middleware.isLoggedIn, Middleware.checkIfStudent, function(req,
             // add username and id to letter
             letter.author.id = req.user._id;
             letter.author.username = req.user.username;
+            letter.approvalStatus.status = false;
             // save letter         
             letter.save();
             User.letters.push(letter);
@@ -46,6 +47,13 @@ router.post("/", Middleware.isLoggedIn, Middleware.checkIfStudent, function(req,
             res.redirect('/student/' + user._id); 
         }               
     });
+});
+
+// EDIT ROUTE - FOR APPROVAL OF LETTERS
+router.get("/:letter_id/edit",  Middleware.checkIfTeacher, Middleware.checkLetterOrigin, function(req, res){
+    Letter.findById(req.params.id, function(err, foundLetter){
+        res.render("letter/approve", {letter: foundLetter});
+  });
 });
 
 // UPDATE ROUTE

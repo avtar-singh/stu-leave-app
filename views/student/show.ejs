@@ -13,7 +13,7 @@
         <li>Leave Type: <%= letter.leaveType %></li>
         <li>Reason: <%= letter.reason %></li>
         <li>Requested At: <%= letter.requestedAt %></li>
-        <% if(letter.approvalStatus == null){ %>
+        <% if(!letter.approvalStatus.status){ %>
             <li>Approval Status: False</li>
         <% } else { %>
             <li>Approval Status: True</li>
