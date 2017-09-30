@@ -4,26 +4,28 @@
 
     <form action="/letter/<%= letid %>?_method=PUT" method="POST">
         <div class="form-group">
-                <input type="text" 
+                <input  class="form-control" type="text" 
                     name="letter[approvalStatus][teacher_id]" 
                     placeholder="status" 
                     value="<%= currentUser._id %>"
+                    readonly
             >        
         </div>
         <div class="form-group">
-                <input type="text" 
+                <input  class="form-control" type="text" 
                     name="letter[approvalStatus][username]" 
                     placeholder="status" 
                     value="<%= currentUser.username %>"
+                    readonly
                 >
         </div>
         
         <div class="form-group">
-            <input type="text" name="letter[approvalStatus][status]" placeholder="status" value="true">
+            <input  class="form-control" type="text" name="letter[approvalStatus][status]" placeholder="status" value="true" readonly>
         </div>
         
         <div class="form-group">
-            <input type="date" name="letter[approvedAt]" placeholder="date of approval">
+            <input  class="form-control" type="date" name="letter[approvedAt]" placeholder="date of approval">
         </div>
         
         <div class="form-group">

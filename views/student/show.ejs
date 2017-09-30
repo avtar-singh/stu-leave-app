@@ -6,24 +6,44 @@
 
     <a href="/letter/new">Add New Letter</a>
 
-    <p>
         <% student.letters.forEach(function callback(letter, index, array){ %>
-        <h2>Letter <% index %></h2>
-        <ul>
-            <li>Star Date: <%= letter.startDate %></li>
-            <li>End Date: <%= letter.endDate %></li>
-            <li>Leave Type: <%= letter.leaveType %></li>
-            <li>Reason: <%= letter.reason %></li>
-            <li>Requested At: <%= letter.requestedAt %></li>
-            <% if(!letter.approvalStatus.status){ %>
-                <li>Approval Status: False</li>
-            <% } else { %>
-                <li>Approval Status: True</li>
-            <% } %>
-            <li>Approved At: <%= letter.approvedAt %></li>
-        </ul>
-        <hr>
-        <% }); %>
-    </p>
+        <h2 id="fHeading">Letter <% index %></h2>
+            <table class="table table-hover"></table>
+                <tr>
+                    <td>Start Date</td>
+                    <td><%= letter.startDate %></td>
+                </tr>
+                <tr>
+                    <td>End Date</td>
+                    <td><%= letter.endDate %></td>
+                </tr>
+                <tr>
+                    <td>Leave Type</td>
+                    <td><%= letter.leaveType %></td>
+                </tr>                    
+                <tr>
+                    <td>Reason</td>
+                    <td><%= letter.reason %></td>
+                </tr>
+                <tr>
+                    <td>Requested At</td>
+                    <td><%= letter.requestedAt %></td>
+                </tr>
+                <tr>
+                    <% if(!letter.approvalStatus.status){ %>
+                        <td>Approval Status</td>
+                        <td>False</td>
+                    <% } else { %>
+                        <td>Approval Status</td>
+                        <td>True</td>
+                    <% } %>
+                </tr>
+                <tr>
+                    <td>Approved At</td>
+                    <td><%= letter.approvedAt %></td>
+                </tr>
+                <% }); %>
+            </table>
+            <hr>
 
 <% include ../partials/footer %>
