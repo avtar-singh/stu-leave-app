@@ -1,7 +1,7 @@
 <h1>Teacher's Home Page</h1>
 
 <p>
-    <% letter.forEach(function(letter)){ %>
+    <% letter.forEach(function(letter){ %>
     <ul>
         <li>Student's Name: <%= letter.author.username %></li>
         <li>Star Date: <%= letter.startDate %></li>
@@ -16,7 +16,7 @@
         <% } %>
         <li>Approved At: <%= letter.approvedAt %></li>
     </ul>
-    <a href="letter/<%= letter._id" + >Approve This Letter</a>
+    <a href="letter/<%= letter._id %>/edit">Approve This Letter</a>
     <hr>
     <% }); %>
 </p>

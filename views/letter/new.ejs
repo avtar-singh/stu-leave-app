@@ -1,12 +1,17 @@
 <h1>Create New Letter</h1>
 
-<form action="/" method="POST">
-    <input type="text" name="letter[startDate]" placeholder="start date">
-    <input type="text" name="letter[endDate]" placeholder="end date">
+<form action="/letter" method="POST">
+    <label for="start date">Start Date: </label>
+    <input type="date" name="letter[startDate]">
+    <label for="end date">End Date: </label>
+    <input type="date" name="letter[endDate]">
+    <label for="type of leave">Type of Leave: </label>
     <input type="text" name="letter[leaveType]" placeholder="type of leave">
+    <label for="reason of leave">Reason of Leave: </label>
     <input type="text" name="letter[reason]" placeholder="reason of leave">
-    <input type="date" name="letter[requestedAt]" placeholder="date of request">
+    <label for="date of request">Date of Request: </label>
+    <input type="date" name="letter[requestedAt]">
     <input type="submit" value="Create">   
 </form>
 
-<a href="/student/show">Back to Home Page</a>
+<a href="/student/<%= res.locals.currentUser.id %>">Back to Home Page</a>
