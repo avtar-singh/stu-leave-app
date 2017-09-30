@@ -56,6 +56,6 @@ app.use("/student", studentRoute);
 app.use("/letter", letterRoute);
 
 // LISTEN REQUESTS
-app.listen(2000, localhost, function(){
+app.listen(2000, "127.0.0.1" , function(){
   console.log("The stu-leave-app Server has started!!!");
 });
