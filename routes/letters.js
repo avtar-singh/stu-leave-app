@@ -39,8 +39,8 @@ router.post("/", Middleware.isLoggedIn, Middleware.checkIfStudent, function(req,
             letter.author.username = req.user.username;
             // save letter         
             letter.save();
-            user.letters.push(letter);
-            user.save();
+            User.letters.push(letter);
+            User.save();
             console.log(letter);
             req.flash("success", "Successfully added letter");
             res.redirect('/student/' + user._id); 
