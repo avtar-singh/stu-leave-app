@@ -1,0 +1,24 @@
+<h1>Student's Home Page</h1>
+
+<h2>Welcome, <%= student.username %></h2>
+
+<a href="letter/new">Add New Letter</a>
+
+<p>
+    <% student.letters.forEach(function callback(letter, index, array){ %>
+    <h2>Letter <% index %></h2>
+    <ul>
+        <li>Star Date: <%= letter.startdate %></li>
+        <li>End Date: <%= letter.enddate %></li>
+        <li>Leave Type: <%= letter.leavetype %></li>
+        <li>Reason: <%= letter.reason %></li>
+        <li>Requested At: <%= letter.requestedAt %></li>
+        <% if(letter.approvalStatus == null){ %>
+            <li>Approval Status: False</li>
+        <% } else { %>
+            <li>Approval Status: True</li>
+        <% } %>
+        <li>Approved At: <%= letter.approvedAt %></li>
+    </ul>
+    <% }); %>
+</p>
