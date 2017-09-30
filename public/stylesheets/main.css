@@ -3,6 +3,13 @@ h1{
     text-align: center;
 }
 
+.label{
+    display: inline-flex;
+    padding: .3em .6em .3em;
+    font-size: 85%;
+    vertical-align: middle;
+
+}
 #fHeading{
     color: white;
     width: 120px;
@@ -12,6 +19,7 @@ h1{
     text-align: center;
     padding: 5px;
 }
+
 #myForm{
     width: 40%; 
     margin: 25px auto;
