@@ -55,6 +55,11 @@ app.use("/", indexRoute);
 app.use("/student", studentRoute);
 app.use("/letter", letterRoute);
 
+// UNDEFINED ROUTE
+app.get("*", function(req, res){
+    res.send("Sorry, The Page you requested couldn't be found!");
+  });
+
 // LISTEN REQUESTS
 app.listen(process.env.PORT, process.env.IP, function(){
   console.log("The stu-leave-app Server has started!!!");

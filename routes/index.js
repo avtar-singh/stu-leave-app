@@ -35,12 +35,12 @@ router.post("/register", function(req, res){
         passport.authenticate("local")(req, res, function(){
             if(newUser.role === "student"){
                 // SUCCESS MESSAGE
-                req.flash("success", "Welcome to S.L.A.S.A " + newUser.username);
+                req.flash("success", "Welcome to S.L.A.S.A, " + newUser.username);
                 // REDIRECT TO VIEW ALL STUDENT APPLICATIONS PAGE
                 res.redirect("/student/" + newUser._id);
             } else if(newUser.role === "teacher"){
                 // SUCCESS MESSAGE
-                req.flash("success", "Welcome to S.L.A.S.A " + newUser.username);
+                req.flash("success", "Welcome to S.L.A.S.A, " + newUser.username);
                 // REDIRECT TO VIEW ALL LETTER PAGE
                 res.redirect("/letter");
             } else {
