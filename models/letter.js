@@ -1,5 +1,7 @@
+// REQUIRING DEPENDENCIES
 var mongoose = require("mongoose");
 
+// CREATING NEW SCHEMA
 var letterSchema = mongoose.Schema({
     startDate: String,
     endDate: String,
@@ -24,4 +26,5 @@ var letterSchema = mongoose.Schema({
     approvedAt: String
 });
 
+// EXPORTING REQUIRED MODEL
 module.exports = mongoose.model("Letter", letterSchema);

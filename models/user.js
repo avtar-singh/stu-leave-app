@@ -1,6 +1,8 @@
+// REQUIRING DEPENDENCIES
 var mongoose              = require("mongoose"),
     passportLocalMongoose = require("passport-local-mongoose");
 
+// CREATING NEW SCHEMA
 var userSchema = new mongoose.Schema({
     username: String,
     password: String,
@@ -14,6 +16,8 @@ var userSchema = new mongoose.Schema({
     ]
 });
 
+// ADDING PASSPORT-LOCAL-MONGOOSE PLUGIN TO THIS SCHEMA
 userSchema.plugin(passportLocalMongoose);
 
+// EXPORTING REQUIRED MODEL
 module.exports = mongoose.model("User", userSchema);
