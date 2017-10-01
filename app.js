@@ -61,6 +61,6 @@ app.get("*", function(req, res){
   });
 
 // LISTEN REQUESTS
-app.listen(process.env.PORT, process.env.IP, function(){
+app.listen(2000, "127.0.0.1", function(){
   console.log("The stu-leave-app Server has started!!!");
 });

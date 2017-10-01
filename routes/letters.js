@@ -18,6 +18,11 @@ router.get("/", Middleware.isLoggedIn, function(req, res){
                 if(res.locals.currentUser.role === "teacher"){
                     // RENDER INDEX PAGE
                     res.render("letter/index", {letter: data});
+                }else{
+                    // ERROR MESSAGE
+                    req.flash("error", "Sorry, You do not have required privileges");
+                    // REDIRECT TO LANDING PAGE
+                    res.redirect("/");                    
                 }
             }
         });
@@ -35,6 +40,11 @@ router.get("/new", Middleware.isLoggedIn, function(req, res){
             // CHECK IF USER IS STUDENT OR NOT
             if(res.locals.currentUser.role === "student"){
                 res.render("letter/new", {letter: data});
+            } else{           
+                // ERROR MESSAGE
+                req.flash("error", "Sorry, You do not have required privileges");
+                // REDIRECT TO LANDING PAGE
+                res.redirect("/"); 
             }
         }
     });

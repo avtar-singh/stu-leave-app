@@ -5,7 +5,7 @@ var express     = require("express"),
     Middleware  = require("../middleware");
 
 // SHOW ROUTE
-router.get("/:id", function (req, res) {
+router.get("/:id", Middleware.isLoggedIn, function (req, res) {
     // CHECK IF USER IS STUDENT OR NOT
     if(res.locals.currentUser.role === "student"){
         User.findById(req.params.id).populate("letters").exec(function (err, data) {
@@ -18,6 +18,11 @@ router.get("/:id", function (req, res) {
                 res.render("student/show", { student: data });
             }
         });
+    } else {           
+        // ERROR MESSAGE
+        req.flash("error", "Sorry, You do not have required privileges");
+        // REDIRECT TO LANDING PAGE
+        res.redirect("/"); 
     }
 });
 
