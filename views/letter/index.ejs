@@ -43,7 +43,14 @@
                     <td><%= letter.approvedAt %></td>
             </tr>
         </table>
-        <a  class="btn btn-lg btn-primary btn-block" href="letter/<%= letter._id %>/edit">Approve This Letter</a>
+        <% if(!letter.approvalStatus.status){ %>
+            <a  class="btn btn-lg btn-primary btn-block" 
+            href="letter/<%= letter._id %>/edit">
+            Approve This Letter
+            </a>
+        <% } else { %>   
+            <h2><span class="label label-primary full-width">Approved Already</span></h1>
+        <% } %>
         <hr>
         <% }); %>
     </p>
